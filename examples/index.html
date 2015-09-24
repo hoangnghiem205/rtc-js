@@ -1,5 +1,24 @@
 <html>
+	<head>
+		<title>RTC-JS Example</title>
+		<script src="../dist/rtc.js"></script>
+	</head>
 	<body>
 		<h1>RTC-JS TEST</h1>
+		<script>
+			var myrtc = new rtc({
+					wsURL: "ws://localhost:9000"
+				});
+
+			myrtc.connect();
+			myrtc.call('hoangnm');
+			myrtc.accept();
+			myrtc.reject();
+			myrtc.disconnect();
+			myrtc.on('call', function() {
+				console.log('rtc call listener')
+			})
+
+		</script>
 	</body>
 </html>
