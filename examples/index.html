@@ -1,23 +1,26 @@
 <html>
 	<head>
 		<title>RTC-JS Example</title>
+		<script src="../lib/message.js"></script>
 		<script src="../dist/rtc.js"></script>
 	</head>
 	<body>
 		<h1>RTC-JS TEST</h1>
+		<button onclick="connect()">Connect</button>
 		<script>
-			var myrtc = new rtc({
-					wsURL: "ws://localhost:9000"
-				});
 
-			myrtc.connect();
-			myrtc.call('hoangnm');
-			myrtc.accept();
-			myrtc.reject();
-			myrtc.disconnect();
-			myrtc.on('call', function() {
-				console.log('rtc call listener')
+			var myrtc = new rtc({
+					wsURL: "ws://localhost:3000"
+				});
+			
+			function connect() {
+				myrtc.connect();	
+			}
+
+			myrtc.on('connect', function(rtc, data){
+				console.log('on connect ', data.content);
 			})
+			
 
 		</script>
 	</body>

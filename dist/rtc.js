@@ -30,10 +30,12 @@ function rtc(config) {
 
     this.connect = function () {
         console.log('rtc connect');
+        this.signaling.send(new Message('connect', 'hoagnnm', 'Connect to server').toString());
     };
 
     this.call = function (call_id) {
         console.log('rtc call ' + call_id);
+
     };
 
     this.accept = function() {
@@ -51,7 +53,7 @@ function rtc(config) {
     /* signaling listener */
 
     this.signaling.onmessage = function(event) {
-        console.log("req: " + event.data);
+        console.log("req: " , event.data);
         var signal = JSON.parse(event.data);
         rtc.instance.exec(signal.signal, signal);
     };
